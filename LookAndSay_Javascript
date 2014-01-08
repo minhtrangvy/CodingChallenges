@@ -1,0 +1,41 @@
+// When you click run it calls the start function
+// To print to the console use println
+// like println("Hello");
+// Otherwise, it's normal JavaScript.
+function start(){
+    lookAndSaySequence(5);
+}
+
+var lookAndSay = function(nums) {
+    var final = '';
+    nums = nums.toString();
+    var n = nums[0];
+    var newN = nums.slice(1,nums.length);
+    var counter = 0;
+    
+    for (var i=0; i<=nums.length; i++) {
+        if (nums[i] != n) {
+            var counterStr = counter.toString();
+            var current = counterStr.concat(n);
+            final = final.concat(current);
+            counter = 1;
+            n = nums[i];
+        }
+        else { counter++; }
+    }
+    return parseInt(final);
+}
+
+var lookAndSaySequence = function(numItems) {
+    var x = 1;
+    println(x);
+    for (var i=1;i<numItems;i++) {
+        x = lookAndSay(x);
+        println(x);
+        parseFloat(x);
+    }
+}
+
+
+
+
