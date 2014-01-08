@@ -1,0 +1,206 @@
+//Grid code from CodeHS
+//unfinished code; any help as to why the error says "script error" would be much appreciated
+
+// When you click run it calls the start function
+// To print to the console use println
+// like println("Hello");
+// Otherwise, it's normal JavaScript.
+function start(){
+    var grid = new Grid(4, 4);
+    grid.initFromArray([
+    	[ 1, 2, 3, 4],
+    	[ 5, 6, 7, 8],
+    	[ 9,10,11,12],
+    	[13,14,15,16]
+    ]);	 
+    var spiral = [];
+    var rows = grid.numRows();
+    var cols = grid.numCols();
+    var startRow = 0;
+    var startCol = 0;
+    
+    while ((startRow<rows) && (startCol<cols)) {
+        //let's print out the first row
+        for (var i=startCol;i<cols;i++)
+            {
+                var elam = grid.get(startRow,i);
+                spiral.push(elam);
+                println(spiral);
+            }
+        startRow++;
+        //then add the last column to the spiral array
+        for (var j=startRow;j<rows;j++)
+            {
+                spiral.push(grid.get(j,cols));
+            }
+        cols = cols-1;
+        //then the last row, from right to left
+        if (startRow<rows) {
+            for (var k=cols-1;k>startCol;k=k-1){
+                spiral.push(grid.get(rows,k));
+            }
+            rows = rows=1;
+        }
+        //then the first column, from bottom up
+        if (startCol < cols) {
+            for (var l=rows-1;l>startRow;l=l-1){
+                    spiral.push(grid.get(l,startCol));
+                }
+            startCol++;
+
+        }
+    }
+    return spiral;
+}
+
+/*    if (row==0 && col==0){
+        
+    }
+
+    //if we have two rows
+    //print out the first row from left to right
+    //then print out the second row from right to left
+    if (rows==2){
+        for (var i=0;i<cols;i++){
+            spiral.push(grid.get(0,i));
+        }
+        for (var j=cols;j>0;j++) {
+            spiral.push(grid.get(1,j));
+        }
+    }
+    if (cols==2){
+        for (var i=0;i<cols;i++){
+            spiral.push(grid.get(i,0));
+        }
+        
+    }
+
+
+
+
+
+var spiralTraverseHelper = function(grid,startRow, startCol,rows,cols,spiral) {
+    //input: takes in a grid, where to start, and where to end
+    //output: an array that goes from (0,0) and
+    //spirals around the grid
+    //there are three possible scenarios:
+    //we end up with one middle square
+    //or two columns
+    //or two rows
+    //depending on if the number of rows/cols are even or odd
+    
+//NOTE: WHAT IS THE BASE CASE
+    if (rows==0 || cols==0) {
+        return spiral;
+    }
+
+    //let's print out the first row
+    for (var i=startCol;i<cols;i++)
+        {
+            spiral.push(grid.get(startRow,i))
+        }
+    //then the last column
+    for (var j=startRow;j<rows;j++)
+        {
+            spiral.push(grid.get(j,cols));
+        }
+    //then the last row, from right to left
+    for (var k=cols;k>startCol;k--){
+            spiral.push(grid.get(rows,k));
+        }
+    //then the first column, from bottom up
+    for (var l=rows;l>startRow;l--){
+            spiral.push(grid.get(l,startCol));
+        }
+    startRow++;
+    startCol++;
+    rows = rows-2;
+    cols = cols-2;
+    spiralTraverseHelper(grid,startRow,startCol,rows,cols,spiral);
+}
+
+
+
+
+
+
+
+
+var spiralTraverse = function(grid) {
+    var rows = grid.numRows();
+    var cols = grid.numCols();
+    spiralTraverseHelper(grid,0,0,rows,cols,spiral);
+}
+
+var spiralTraverseHelper = function(grid) {
+    if (rows==0 || cols==0) {
+        return spiral;
+    }
+
+    //let's print out the first row
+    for (var i=startCol;i<cols;i++)
+        {
+            var elam = grid.get(startRow,i);
+            spiral.push(elam);
+        }
+    //then the last column
+    for (var j=startRow;j<rows;j++)
+        {
+            spiral.push(grid.get(j,cols));
+        }
+    //then the last row, from right to left
+    for (var k=cols;k>startCol;k--){
+            spiral.push(grid.get(rows,k));
+        }
+    //then the first column, from bottom up
+    for (var l=rows;l>startRow;l--){
+            spiral.push(grid.get(l,startCol));
+        }
+    startRow++;
+    startCol++;
+    rows = rows-2;
+    cols = cols-2;
+    return spiral;
+    //spiralTraverseHelper(grid,startRow,startCol,rows,cols,spiral);
+}
+
+
+
+
+
+
+    /* while (startRow < rows && startCol < cols) {
+        //let's print out the first row
+        for (var i=startCol;i<cols;i++)
+            {
+                var elam = grid.get(startRow,i);
+                spiral.push(elam);
+            }
+        //then the last column
+        for (var j=startRow;j<rows;j++)
+            {
+                spiral.push(grid.get(j,cols));
+            }
+        //then the last row, from right to left
+        if (startRow < rows) {
+            for (var k=cols-1;k>startCol;k--){
+                spiral.push(grid.get(rows,k));
+            }
+            rows--;
+
+        }
+        //then the first column, from bottom up
+        if (startCol < cols) {
+            for (var l=rows-1;l>startRow;l--){
+                    spiral.push(grid.get(l,startCol));
+                }
+            startCol++;
+
+        }
+        startRow++;
+        cols--;
+    }
+    return spiral;
+} */
+
+
