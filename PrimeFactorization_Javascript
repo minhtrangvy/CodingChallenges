@@ -1,0 +1,52 @@
+function start(){
+    var num = readInt("Enter Number:");
+    println("The prime factorization is:");
+    primes = Primes(num);
+    for (i=0;i<primes.length;i++) {
+        println(primes[i]);
+    }
+}
+
+var Primes = function(n) {
+    //input: a number
+    //output: the prime factorization of that number
+    
+    //takes the square root of n because we only need to check
+    //the numbers from 1 to sqrt(n)
+    var root = Math.sqrt(n);
+    var primes = []; //stores all the primes in an array
+    var True = true;
+    while( True ){
+        var x = 2;
+        if (n % x) { //if n is not even
+            x = 3; //set x to 3
+            //and while n is not divisible by 3
+            //and odd numbers are less than root, 
+            //stay in the while loop until we find
+            //another prime
+            while ((n % x) && ((x += 2) < root));
+        }
+        //if we are greater than the root
+        //set x = n
+        if (x > root) {
+            x = n;
+        }
+        //if we aren't greater than the root
+        //then we have found a prime factor
+        else {
+            x = x;
+        }
+        //so we put that into the primes array
+        primes.push(x);
+        //this determines if we are still in the while loop
+        True = ( x != n );
+        //basically do the loop again
+        //with a number that doesn't have the prime number
+        //we just added to the array
+        n /= x;
+    }
+    return primes;
+}
+
+
+
